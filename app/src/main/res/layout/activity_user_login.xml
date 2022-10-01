@@ -7,12 +7,12 @@
     android:background="@drawable/login_bg">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/etEmailLogin"
         android:layout_width="308dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
         android:textColor="@color/black"
         android:textColorHint="#888"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,12 +23,12 @@
         app:layout_constraintVertical_bias="0.452" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/etPasswordLogin"
         android:layout_width="308dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Password"
         android:inputType="textPassword"
+        android:hint="Password"
         android:textColor="@color/black"
         android:textColorHint="#888"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,11 +39,11 @@
         app:layout_constraintVertical_bias="0.569" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#B90E0A"
-        android:text="Get Cooking!"
+        android:text="@string/get_cooking"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,11 +52,12 @@
         app:layout_constraintVertical_bias="0.674" />
 
     <TextView
-        android:id="@+id/signupbutt"
+        android:id="@+id/SignUpPromt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000080"
-        android:text="Not a user? Sign Up by clicking here."
+        android:textSize="20sp"
+        android:text="Not a user? Sign Up "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
