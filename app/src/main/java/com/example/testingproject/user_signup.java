@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testingproject.models.User;
@@ -22,7 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class user_signup extends AppCompatActivity  {
+public class user_signup extends AppCompatActivity  implements View.OnClickListener {
+    private TextView tv;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private EditText etEmailSignUp, etPasswordSignUp, etNameSignUp;
@@ -37,6 +41,11 @@ public class user_signup extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
+        tv=findViewById(R.id.sigsign);
+        Typeface customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
+        tv.setTypeface(customfont);
+        ImageView bksn=(ImageView) findViewById(R.id.backbuttsign);
+        bksn.setOnClickListener(this);
 
 // ...
 // Initialize Firebase Auth
@@ -114,10 +123,7 @@ public class user_signup extends AppCompatActivity  {
 
 
     }
-
-
-
-
+    public void onClick(View view) {startActivity(new Intent(user_signup.this,user_login.class));}
 }
 
 

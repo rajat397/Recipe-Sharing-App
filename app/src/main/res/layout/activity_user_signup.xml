@@ -7,8 +7,19 @@
     android:background="@drawable/login_bg"
     tools:context=".user_signup">
 
+    <ImageView
+        android:id="@+id/backbuttsign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058" />
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sigsign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
@@ -17,7 +28,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.24" />
@@ -58,7 +69,7 @@
         android:layout_width="256dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="UserName"
         android:textColor="@color/black"
         android:textColorHint="#777"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,6 +85,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#B90E0A"
         android:text="Submit"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
