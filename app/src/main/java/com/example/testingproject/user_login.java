@@ -3,6 +3,7 @@ import static android.view.View.*;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.BreakIterator;
 
 public class user_login extends AppCompatActivity {
-
+    private TextView tv;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private ProgressDialog progressDialog;
@@ -31,7 +32,11 @@ public class user_login extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-         
+
+
+        tv=findViewById(R.id.loginsign);
+        Typeface customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
+        tv.setTypeface(customfont);
         TextView signUpPromt = findViewById(R.id.SignUpPromt);
         // ...
 // Initialize Firebase Auth
