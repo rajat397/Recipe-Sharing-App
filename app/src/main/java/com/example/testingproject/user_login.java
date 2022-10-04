@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,16 +39,16 @@ public class user_login extends AppCompatActivity {
         Typeface customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
         tv.setTypeface(customfont);
         TextView signUpPromt = findViewById(R.id.SignUpPromt);
-        // ...
-// Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        progressDialog= new ProgressDialog(user_login.this);
-        progressDialog.setTitle("Login");
-        progressDialog.setMessage("Login to your account");
-        EditText EmailLogin = findViewById(R.id.etEmailLogin);
-        EditText PasswordLogin= findViewById(R.id.etPasswordLogin);
 
+            // ...
+// Initialize Firebase Auth
+            mAuth = FirebaseAuth.getInstance();
+            database = FirebaseDatabase.getInstance();
+            progressDialog = new ProgressDialog(user_login.this);
+            progressDialog.setTitle("Login");
+            progressDialog.setMessage("Login to your account");
+            EditText EmailLogin = findViewById(R.id.etEmailLogin);
+            EditText PasswordLogin = findViewById(R.id.etPasswordLogin);
         Button btnLogin= findViewById(R.id.btnLogin);
 
         if(mAuth.getCurrentUser()!=null)
@@ -59,6 +60,18 @@ public class user_login extends AppCompatActivity {
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(TextUtils.isEmpty(EmailLogin.getText().toString()) || EmailLogin==null)
+                {
+                    EmailLogin.setError("Email is invalid");
+                    Toast.makeText(user_login.this,"Email is invalid",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(PasswordLogin.getText().toString()) || PasswordLogin==null)
+                {
+                    PasswordLogin.setError("Password is invalid");
+                    Toast.makeText(user_login.this,"Password is invalid",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 progressDialog.show();
                 mAuth.signInWithEmailAndPassword(EmailLogin.getText().toString(),PasswordLogin.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -72,6 +85,7 @@ public class user_login extends AppCompatActivity {
                         }
                         else{
                             Toast.makeText(user_login.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            progressDialog.hide();
                         }
                     }
                 });

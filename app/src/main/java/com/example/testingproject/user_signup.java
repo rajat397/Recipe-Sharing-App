@@ -80,17 +80,20 @@ public class user_signup extends AppCompatActivity  implements View.OnClickListe
 
                 if (TextUtils.isEmpty(email)) {
                     etEmailSignUp.setError("Email is Required");
+                    progressDialog.hide();
                     return;
                 }
 
 
                 if (TextUtils.isEmpty(password)) {
                     etPasswordSignUp.setError("Password is Required");
+                    progressDialog.hide();
                     return;
                 }
 
                 if (TextUtils.isEmpty(name)) {
-                    etNameSignUp.setError("Name is Required");
+                    etNameSignUp.setError("UserName is Required");
+                    progressDialog.hide();
                     return;
                 }
 
