@@ -42,9 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
                 auth.signOut();
                 startActivity(new Intent(MainActivity.this,user_login.class));
+                finish();
                 break;
 
             case R.id.MyProfile:
+
+                startActivity(new Intent(MainActivity.this,MyProfileActivity.class));
+
 
                 break;
         }

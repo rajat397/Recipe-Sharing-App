@@ -5,6 +5,24 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+OOMProject/app/src/main/res/
+Latest commit
+@Kuber144
+Kuber144 fixed bugs in signup and login screen
+bca0c8f
+1 hour ago
+Git stats
+
+    History
+
+Files
+Type
+Name
+Latest commit message
+Commit time
+. .
+drawable-v24
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="orange">#e56717</color>
 </resources>

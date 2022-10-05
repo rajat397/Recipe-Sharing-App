@@ -12,6 +12,7 @@
         android:layout_width="65dp"
         android:layout_height="49dp"
         android:src="@drawable/back_arrow"
+        app:tint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.082"

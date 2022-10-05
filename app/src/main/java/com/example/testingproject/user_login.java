@@ -54,6 +54,7 @@ public class user_login extends AppCompatActivity {
         if(mAuth.getCurrentUser()!=null)
         {
             startActivity(new Intent(user_login.this,MainActivity.class));
+            finish();
         }
 
 
@@ -96,6 +97,7 @@ public class user_login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(user_login.this,user_signup.class));
+                finish();
             }
         });
 

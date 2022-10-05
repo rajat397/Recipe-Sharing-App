@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class user_signup extends AppCompatActivity  implements View.OnClickListener {
+public class user_signup extends AppCompatActivity   {
     private TextView tv;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
@@ -45,7 +45,13 @@ public class user_signup extends AppCompatActivity  implements View.OnClickListe
         Typeface customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
         tv.setTypeface(customfont);
         ImageView bksn=(ImageView) findViewById(R.id.backbuttsign);
-        bksn.setOnClickListener(this);
+        bksn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(user_signup.this,user_login.class));
+                finish();
+            }
+        });
 
 // ...
 // Initialize Firebase Auth
@@ -113,6 +119,7 @@ public class user_signup extends AppCompatActivity  implements View.OnClickListe
                             database.getReference().child("Users").child(id).setValue(user);
                             Toast.makeText(user_signup.this, "Account Created Successfully",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(user_signup.this, MainActivity.class));
+                            finish();
                         }
                         else
                         {
@@ -126,7 +133,7 @@ public class user_signup extends AppCompatActivity  implements View.OnClickListe
 
 
     }
-    public void onClick(View view) {startActivity(new Intent(user_signup.this,user_login.class));}
+
 }
 
 
