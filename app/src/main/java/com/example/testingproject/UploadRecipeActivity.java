@@ -19,11 +19,9 @@ import java.util.List;
 
 public class UploadRecipeActivity extends AppCompatActivity {
 
-    Button select, previous, next;
+    Button select;
     ImageSwitcher imageView;
     int PICK_IMAGE_MULTIPLE = 1;
-    String imageEncoded;
-    TextView total;
     ArrayList<Uri> mArrayUri;
     int position = 0;
     List<String> imagesEncodedList;
@@ -32,11 +30,9 @@ public class UploadRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_recipe);
-
+        ImageView cancel=findViewById(R.id.cancel_img);
         select = findViewById(R.id.select);
-       // total = findViewById(R.id.text);
         imageView = findViewById(R.id.image);
-        previous = findViewById(R.id.previous);
         mArrayUri = new ArrayList<Uri>();
 
         // showing all images in imageswitcher
@@ -47,10 +43,10 @@ public class UploadRecipeActivity extends AppCompatActivity {
                 return imageView1;
             }
         });
-        next = findViewById(R.id.next);
+        ImageView next1 = findViewById(R.id.next1);
 
         // click here to select next image
-        next.setOnClickListener(new View.OnClickListener() {
+        next1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (position < mArrayUri.size() - 1) {
@@ -63,8 +59,9 @@ public class UploadRecipeActivity extends AppCompatActivity {
             }
         });
 
-        // click here to view previous image
-        previous.setOnClickListener(new View.OnClickListener() {
+
+        ImageView previous1=findViewById(R.id.previous1);
+        previous1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (position > 0) {
@@ -75,6 +72,8 @@ public class UploadRecipeActivity extends AppCompatActivity {
             }
         });
 
+
+
         imageView = findViewById(R.id.image);
 
         // click here to select image
@@ -84,7 +83,8 @@ public class UploadRecipeActivity extends AppCompatActivity {
 
                 // initialising intent
                 Intent intent = new Intent();
-
+                cancel.setVisibility(View.VISIBLE);
+                imageView.setBackground(null);
                 // setting type to select to be image
                 intent.setType("image/*");
 
@@ -92,8 +92,32 @@ public class UploadRecipeActivity extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
+
             }
         });
+
+        cancel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                mArrayUri.remove(position);
+                if(position>=mArrayUri.size())
+                    position--;
+
+                if(mArrayUri.size()==0) {
+                    cancel.setVisibility(View.INVISIBLE);
+                    imageView.setImageDrawable(null);
+                    imageView.setBackgroundResource(R.drawable.ic_baseline_image_24);
+                }
+                else
+                {
+                    imageView.setImageURI(mArrayUri.get(position));
+                }
+
+            }
+        });
+
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -120,6 +144,12 @@ public class UploadRecipeActivity extends AppCompatActivity {
             }
         } else {
             // show this if no image is selected
+            ImageView cancel=findViewById(R.id.cancel_img);
+            if(mArrayUri.size()==0)
+            {
+                cancel.setVisibility(View.INVISIBLE);
+                imageView.setBackgroundResource(R.drawable.ic_baseline_image_24);
+            }
             Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
         }
     }
