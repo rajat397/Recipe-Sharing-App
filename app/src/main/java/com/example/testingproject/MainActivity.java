@@ -23,15 +23,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button add = findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,UploadRecipeActivity.class));
-            }
-        });
 
          auth =FirebaseAuth.getInstance();
+
+         Button add = findViewById(R.id.UploadRecipe);
+
+         add.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 startActivity(new Intent(MainActivity.this, UploadRecipeActivity.class));
+             }
+         });
+
+
 
     }
 

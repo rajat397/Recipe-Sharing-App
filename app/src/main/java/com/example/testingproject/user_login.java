@@ -49,7 +49,7 @@ public class user_login extends AppCompatActivity {
             progressDialog.setMessage("Login to your account");
             EditText EmailLogin = findViewById(R.id.etEmailLogin);
             EditText PasswordLogin = findViewById(R.id.etPasswordLogin);
-        Button btnLogin= findViewById(R.id.btnLogin);
+            Button btnLogin= findViewById(R.id.btnLogin);
 
         if(mAuth.getCurrentUser()!=null)
         {

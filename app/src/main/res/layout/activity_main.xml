@@ -20,6 +20,8 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        />-->
 
+
+
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="400dp"
         android:layout_height="624dp"
@@ -30,10 +32,10 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/add"
+            android:id="@+id/UploadRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="add"
             app:layout_column="0"
             app:layout_row="0" />
 
