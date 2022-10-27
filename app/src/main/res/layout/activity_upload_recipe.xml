@@ -29,12 +29,12 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPublish"
-            android:background="@drawable/btn_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="3dp"
-            android:enabled="false"
+            android:background="@drawable/btn_bg"
+            android:enabled="true"
             android:text="Publish"
             android:textColor="@color/grey"
             android:textSize="14sp"
