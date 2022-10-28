@@ -44,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
              }
          });
 
+         Button admin=findViewById(R.id.admin_side);
+         admin.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 startActivity(new Intent(MainActivity.this,adminPage.class));
+             }
+         });
+
 
 
     }
