@@ -16,11 +16,14 @@ import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testingproject.models.User;
@@ -60,7 +63,25 @@ public class MyProfileActivity extends AppCompatActivity {
         EditText etAbout = findViewById(R.id.etAbout);
         Button btnEdit = findViewById(R.id.btnEdit);
         Button btnSave = findViewById(R.id.btnSave);
+        TextView txtvi=findViewById(R.id.txtcnt);
+        etAbout.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                int length=txtvi.length();
+                String convert=String.valueOf(length);
+                txtvi.setText(convert+"/150 Chars");;
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                txtvi.setText(String.valueOf(charSequence.length())+"/150 Chars");
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         database.getReference().child("Users").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,7 +140,7 @@ public class MyProfileActivity extends AppCompatActivity {
                         etUserName.setText(new_userName);
                         etAbout.setText(new_About);
 
-                        HashMap<String, Object>obj = new HashMap<>();
+                        HashMap<String, Object> obj = new HashMap<>();
                         obj.put("userName",new_userName);
                         obj.put("about",new_About);
                         database.getReference().child("Users").child(auth.getUid()).updateChildren(obj);
@@ -174,7 +195,7 @@ public class MyProfileActivity extends AppCompatActivity {
     }
 
 
-    ActivityResultLauncher<Intent> mGetImage = registerForActivityResult(
+    private ActivityResultLauncher<Intent> mGetImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override

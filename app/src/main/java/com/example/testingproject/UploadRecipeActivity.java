@@ -44,22 +44,22 @@ import java.util.List;
 
 public class UploadRecipeActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
-    FirebaseDatabase database;
-    FirebaseStorage storage;
+    private FirebaseAuth auth;
+    private FirebaseDatabase database;
+    private FirebaseStorage storage;
     private ProgressDialog progressDialog;
 
 
-    Button select;
-    ImageSwitcher imageView;
-    ArrayList<Uri> mArrayUri;
-    ArrayList<String>urlStrings;
-    int position = 0;
-    List<String> imagesEncodedList;
-    EditText dishTitle ;
-    EditText etIngredients;
-    EditText etDescription ;
-    Button publish ;
+    private Button select;
+    private ImageSwitcher imageView;
+    private ArrayList<Uri> mArrayUri;
+    private ArrayList<String>urlStrings;
+    private int position = 0;
+    private List<String> imagesEncodedList;
+    private EditText dishTitle ;
+    private EditText etIngredients;
+    private EditText etDescription ;
+    private Button publish ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

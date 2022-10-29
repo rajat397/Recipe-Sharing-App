@@ -32,7 +32,8 @@ public class user_signup extends AppCompatActivity   {
     private EditText etEmailSignUp, etPasswordSignUp, etNameSignUp;
     private Button btnSignUp;
     private ProgressDialog progressDialog;
-
+    private Typeface customfont;
+    private ImageView bksn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,9 +43,9 @@ public class user_signup extends AppCompatActivity   {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
         tv=findViewById(R.id.sigsign);
-        Typeface customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
+        customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
         tv.setTypeface(customfont);
-        ImageView bksn=(ImageView) findViewById(R.id.backbuttsign);
+        bksn=(ImageView) findViewById(R.id.backbuttsign);
         bksn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,44 +76,38 @@ public class user_signup extends AppCompatActivity   {
 
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
-
-
+            private String email,password,name,id;
             @Override
             public void onClick(View view) {
                 progressDialog.show();
-                String email = etEmailSignUp.getText().toString();
-                String password = etPasswordSignUp.getText().toString();
-                String name = etNameSignUp.getText().toString();
-
+                email = etEmailSignUp.getText().toString();
+                password = etPasswordSignUp.getText().toString();
+                name = etNameSignUp.getText().toString();
                 if (TextUtils.isEmpty(email)) {
                     etEmailSignUp.setError("Email is Required");
                     progressDialog.hide();
                     return;
                 }
-
-
                 if (TextUtils.isEmpty(password)) {
                     etPasswordSignUp.setError("Password is Required");
                     progressDialog.hide();
                     return;
                 }
-
                 if (TextUtils.isEmpty(name)) {
                     etNameSignUp.setError("UserName is Required");
                     progressDialog.hide();
                     return;
                 }
-
-
                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    private User user;
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
 
-                            User user = new User(etNameSignUp.getText().toString(),etEmailSignUp.getText().toString(),etPasswordSignUp.getText().toString());
+                            user = new User(etNameSignUp.getText().toString(),etEmailSignUp.getText().toString(),etPasswordSignUp.getText().toString());
 
-                            String id = task.getResult().getUser().getUid();
+                            id = task.getResult().getUser().getUid();
 
 
 

@@ -11,13 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-
-
+    private Button add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
          auth =FirebaseAuth.getInstance();
 
-         Button add = findViewById(R.id.UploadRecipe);
+         add = findViewById(R.id.UploadRecipe);
 
          add.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -63,9 +65,15 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.logout:
 
-                auth.signOut();
-                startActivity(new Intent(MainActivity.this,user_login.class));
-                finish();
+                AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        startActivity(new Intent(MainActivity.this,user_login.class));
+                        finish();
+                    }
+                });
                 break;
 
             case R.id.MyProfile:
