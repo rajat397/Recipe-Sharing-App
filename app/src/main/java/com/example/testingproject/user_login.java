@@ -24,21 +24,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.BreakIterator;
 
 public class user_login extends AppCompatActivity {
-    private TextView tv;
+    private TextView tv,signUpPrompt;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private ProgressDialog progressDialog;
+    public Typeface customfont;
+    private EditText EmailLogin,PasswordLogin;
+    private Button btnLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-
-
         tv=findViewById(R.id.loginsign);
-        Typeface customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
+        customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
         tv.setTypeface(customfont);
-        TextView signUpPromt = findViewById(R.id.SignUpPromt);
+        signUpPrompt = findViewById(R.id.SignUpPromt);
 
             // ...
 // Initialize Firebase Auth
@@ -47,9 +48,9 @@ public class user_login extends AppCompatActivity {
             progressDialog = new ProgressDialog(user_login.this);
             progressDialog.setTitle("Login");
             progressDialog.setMessage("Login to your account");
-            EditText EmailLogin = findViewById(R.id.etEmailLogin);
-            EditText PasswordLogin = findViewById(R.id.etPasswordLogin);
-            Button btnLogin= findViewById(R.id.btnLogin);
+            EmailLogin = findViewById(R.id.etEmailLogin);
+            PasswordLogin = findViewById(R.id.etPasswordLogin);
+            btnLogin= findViewById(R.id.btnLogin);
 
         if(mAuth.getCurrentUser()!=null)
         {
@@ -80,7 +81,9 @@ public class user_login extends AppCompatActivity {
 
                         if(task.isSuccessful())
                         {
+                            progressDialog.hide();
                             startActivity(new Intent(user_login.this,MainActivity.class));
+                            finish();
                             Toast.makeText(user_login.this, "Login Successfull",Toast.LENGTH_SHORT).show();
 
                         }
@@ -93,7 +96,7 @@ public class user_login extends AppCompatActivity {
             }
         });
 
-        signUpPromt.setOnClickListener(new OnClickListener() {
+        signUpPrompt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(user_login.this,user_signup.class));
