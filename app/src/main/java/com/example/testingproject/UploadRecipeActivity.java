@@ -353,7 +353,7 @@ public class UploadRecipeActivity extends AppCompatActivity {
         recipe.setDishTitle(dishTitle.getText().toString());
         recipe.setIngredients(etIngredients.getText().toString());
         recipe.setDescription(etDescription.getText().toString());
-
+        recipe.setValidate(false);
 
 
         database.getReference().child("Recipes").push().setValue(recipe).addOnCompleteListener(
