@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,15 +72,10 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.logout:
 
-                AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        startActivity(new Intent(MainActivity.this,user_login.class));
-                        finish();
-                    }
-                });
+                FirebaseAuth.getInstance()
+                .signOut();
+                startActivity(new Intent(MainActivity.this,user_login.class));
+                finish();
                 break;
 
             case R.id.MyProfile:

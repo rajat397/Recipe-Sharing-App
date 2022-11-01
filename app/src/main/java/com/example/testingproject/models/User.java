@@ -2,18 +2,26 @@ package com.example.testingproject.models;
 
 public class User {
 
-    String profilepic , userName, email, password ,about;
+    String profilepic , userName, email, password ,about, userType;
 
 
     //Sign Up Constructor
-    public User(String userName, String email, String password){
+    public User(String userName, String email, String password, String userType){
         this.userName=userName;
         this.email=email;
         this.password=password;
+        this.userType=userType;
 
 
     }
 
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
     public String getProfilepic() {
         return profilepic;

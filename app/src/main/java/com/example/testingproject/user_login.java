@@ -15,11 +15,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.testingproject.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.BreakIterator;
 
@@ -54,8 +58,34 @@ public class user_login extends AppCompatActivity {
 
         if(mAuth.getCurrentUser()!=null)
         {
-            startActivity(new Intent(user_login.this,MainActivity.class));
-            finish();
+            FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+                    String userType = user.getUserType();
+                    if(userType.equals("GENERAL"))
+                    {
+                        progressDialog.hide();
+                        startActivity(new Intent(user_login.this, MainActivity.class));
+                        finish();
+
+
+                    }
+                    else{
+                        progressDialog.hide();
+                        startActivity(new Intent(user_login.this, adminPage.class));
+                        finish();
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+      
         }
 
 
@@ -81,9 +111,34 @@ public class user_login extends AppCompatActivity {
 
                         if(task.isSuccessful())
                         {
-                            progressDialog.hide();
-                            startActivity(new Intent(user_login.this,MainActivity.class));
-                            finish();
+
+                            FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    User user = snapshot.getValue(User.class);
+                                    String userType = user.getUserType();
+                                    if(userType.equals("GENERAL"))
+                                    {
+                                        progressDialog.hide();
+                                        startActivity(new Intent(user_login.this, MainActivity.class));
+                                        finish();
+
+
+                                    }
+                                    else{
+                                        progressDialog.hide();
+                                        startActivity(new Intent(user_login.this, adminPage.class));
+                                        finish();
+
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                             Toast.makeText(user_login.this, "Login Successfull",Toast.LENGTH_SHORT).show();
 
                         }

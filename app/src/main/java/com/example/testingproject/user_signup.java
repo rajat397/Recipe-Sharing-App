@@ -105,7 +105,7 @@ public class user_signup extends AppCompatActivity   {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
 
-                            user = new User(etNameSignUp.getText().toString(),etEmailSignUp.getText().toString(),etPasswordSignUp.getText().toString());
+                            user = new User(etNameSignUp.getText().toString(),etEmailSignUp.getText().toString(),etPasswordSignUp.getText().toString(),"General");
 
                             id = task.getResult().getUser().getUid();
 
