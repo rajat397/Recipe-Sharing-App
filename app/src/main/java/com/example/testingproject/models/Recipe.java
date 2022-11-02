@@ -9,6 +9,18 @@ import java.util.Date;
 
 public class Recipe implements Parcelable {
 
+
+
+    private int postLike;
+
+    public int getPostLike() {
+        return postLike;
+    }
+
+    public void setPostLike(int postLike) {
+        this.postLike = postLike;
+    }
+
     public Recipe(){}
     public Recipe(String recipeId, String publishedBy, String dishTitle, String ingredients, String description, Date postedAt, ArrayList<String> recipeImages,boolean validate) {
         this.recipeId = recipeId;
