@@ -51,6 +51,12 @@ public class HomeAdapter extends FirebaseRecyclerAdapter<Recipe,HomeAdapter.view
            ArrayList<String>imageList = model.getRecipeImages();
            holder.FoodTitle.setText(model.getDishTitle());
            Picasso.get().load(imageList.get(0)).placeholder(R.drawable.user_avatar).resize(150,150).into(holder.foodImage);
+           holder.foodImage.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+
+               }
+           });
     }
 
     @NonNull

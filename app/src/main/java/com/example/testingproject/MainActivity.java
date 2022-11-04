@@ -2,6 +2,9 @@ package com.example.testingproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +17,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.example.testingproject.Fragments.HomeFragment;
+import com.example.testingproject.Fragments.ProfileFragment;
+import com.example.testingproject.Fragments.SearchFragment;
+import com.example.testingproject.Fragments.UploadRecipeFragment;
+import com.example.testingproject.adapter.AdminAdapter;
 import com.example.testingproject.adapter.HomeAdapter;
 import com.example.testingproject.models.Recipe;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -27,7 +37,9 @@ import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdminAdapter.OnNoteListener{
+
+
 
     public class WrapContentLinearLayoutManager extends LinearLayoutManager {
         public WrapContentLinearLayoutManager(Context context) {
@@ -55,70 +67,116 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recview;
     HomeAdapter adapter;
     private FirebaseAuth auth;
-    private Button add;
     ArrayList<Recipe> recipeList;
+    ImageView home,search,add,profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         recview = findViewById(R.id.homeRecView);
-        recview.setLayoutManager(new WrapContentLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-         Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
-        FirebaseRecyclerOptions<Recipe> options =
-                new FirebaseRecyclerOptions.Builder<Recipe>()
-                        .setQuery(query, Recipe.class)
-                        .build();
+        home=(ImageView) findViewById(R.id.home);
+        search=(ImageView) findViewById(R.id.search);
+        add=(ImageView) findViewById(R.id.add);
+        profile=(ImageView) findViewById(R.id.profile);
 
-        adapter = new HomeAdapter(options);
-        recview.setAdapter(adapter);
 
-         auth =FirebaseAuth.getInstance();
+        search.setBackgroundResource(R.color.white);
+        add.setBackgroundResource(R.color.white);
+        profile.setBackgroundResource(R.color.white);
+        home.setBackgroundResource(R.color.teal_200);
+        replaceFragment(new HomeFragment());
 
-         add = findViewById(R.id.UploadRecipe);
 
-         add.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 startActivity(new Intent(MainActivity.this, UploadRecipeActivity.class));
-             }
-         });
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                search.setBackgroundResource(R.color.white);
+                add.setBackgroundResource(R.color.white);
+                profile.setBackgroundResource(R.color.white);
+                home.setBackgroundResource(R.color.teal_200);
+                replaceFragment(new HomeFragment());
+            }
+        });
+        search.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                home.setBackgroundResource(R.color.white);
+                add.setBackgroundResource(R.color.white);
+                profile.setBackgroundResource(R.color.white);
+                search.setBackgroundResource(R.color.teal_200);
+                replaceFragment(new SearchFragment());
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                search.setBackgroundResource(R.color.white);
+                home.setBackgroundResource(R.color.white);
+                profile.setBackgroundResource(R.color.white);
+                add.setBackgroundResource(R.color.teal_200);
+                replaceFragment(new UploadRecipeFragment());
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                search.setBackgroundResource(R.color.white);
+                add.setBackgroundResource(R.color.white);
+                home.setBackgroundResource(R.color.white);
+                profile.setBackgroundResource(R.color.teal_200);
+                replaceFragment(new ProfileFragment());
+            }
+        });
 
-         Button search=findViewById(R.id.search_button1);
-         search.setOnClickListener(new View.OnClickListener(){
+//        recview = findViewById(R.id.homeRecView);
+//        recview.setLayoutManager(new WrapContentLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+//
+//         Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+//        FirebaseRecyclerOptions<Recipe> options =
+//                new FirebaseRecyclerOptions.Builder<Recipe>()
+//                        .setQuery(query, Recipe.class)
+//                        .build();
+//
+//        adapter = new HomeAdapter(options,MainActivity.this::onNoteClick);
+//        recview.setAdapter(adapter);
 
-             @Override
-             public void onClick(View view) {
-                 startActivity(new Intent(MainActivity.this,search_activity.class));
-             }
-         });
 
-         Button admin=findViewById(R.id.admin_side);
-         admin.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 startActivity(new Intent(MainActivity.this,adminPage.class));
-             }
-         });
+
+
+
 
 
 
     }
+
+
+
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
+    public void onNoteClick(int position) {
+
+        Intent intent=new Intent(MainActivity.this,RecipeDisplayActivity.class);
+        intent.putExtra("Package",recipeList.get(position));
+        startActivity(intent);
+
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
+
+    private void replaceFragment(Fragment fragment)
+    {
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
 
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
