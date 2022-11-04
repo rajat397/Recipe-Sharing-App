@@ -8,17 +8,23 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,38 +32,86 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.testingproject.adapter.AdminAdapter;
+import com.example.testingproject.adapter.HomeAdapter;
+import com.example.testingproject.adapter.MyRecipesAdapter;
+import com.example.testingproject.models.Recipe;
 import com.example.testingproject.models.User;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.security.KeyStore;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MyProfileActivity extends AppCompatActivity {
+
+    public class WrapContentLinearLayoutManager extends LinearLayoutManager{
+        public WrapContentLinearLayoutManager(Context context) { super(context); }
+
+        public WrapContentLinearLayoutManager(Context context,int orientation,boolean reverseLayout){
+            super(context,orientation,reverseLayout);
+        }
+        public WrapContentLinearLayoutManager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
+            super(context,attrs,defStyleAttr,defStyleRes);
+
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler,RecyclerView.State state){
+            try{
+                super.onLayoutChildren(recycler,state);
+            }catch (IndexOutOfBoundsException e){
+                Log.e("TAG","Recyclerview e");
+            }
+        }
+    }
 
     private FirebaseDatabase database;
     private FirebaseStorage storage;
     private FirebaseAuth auth;
     private ProgressDialog progressDialog;
+    private TextView tv;
+    private Typeface customfont;
+    RecyclerView recview;
+    MyRecipesAdapter adapter;
+    ArrayList<Recipe> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+        recview=findViewById(R.id.profileRecView);
+        recview.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes").orderByChild("publishedBy").equalTo(FirebaseAuth.getInstance().getUid());
+        FirebaseRecyclerOptions<Recipe> options=
+                new FirebaseRecyclerOptions.Builder<Recipe>()
+                        .setQuery(query,Recipe.class)
+                        .build();
 
+        adapter = new MyRecipesAdapter(options);
+        recview.setAdapter(adapter);
+        String currentuser=FirebaseAuth.getInstance().getUid();
         getSupportActionBar().hide();
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
         auth = FirebaseAuth.getInstance();
-
+        tv=findViewById(R.id.yourrecipestext);
+        customfont=Typeface.createFromAsset(getAssets(),"fonts/Lobster-Regular.ttf");
+        tv.setTypeface(customfont);
 
         EditText etUserName = findViewById(R.id.etUserName);
         EditText etAbout = findViewById(R.id.etAbout);
@@ -194,7 +248,24 @@ public class MyProfileActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+    public void onNoteClick(int position) {
+
+        Intent intent=new Intent(MyProfileActivity.this,Accept_Reject_Page.class);
+        intent.putExtra("Package",list.get(position));
+        startActivity(intent);
+
+    }
     private ActivityResultLauncher<Intent> mGetImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
