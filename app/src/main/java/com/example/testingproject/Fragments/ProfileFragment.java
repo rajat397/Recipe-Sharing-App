@@ -1,8 +1,12 @@
 package com.example.testingproject.Fragments;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +16,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextUtils;
@@ -28,18 +34,23 @@ import android.widget.Toast;
 import com.example.testingproject.MainActivity;
 import com.example.testingproject.MyProfileActivity;
 import com.example.testingproject.R;
+import com.example.testingproject.adapter.MyRecipesAdapter;
+import com.example.testingproject.models.Recipe;
 import com.example.testingproject.models.User;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProfileFragment extends Fragment {
@@ -48,6 +59,9 @@ public class ProfileFragment extends Fragment {
     private FirebaseDatabase database;
     private FirebaseStorage storage;
     private FirebaseAuth auth;
+    RecyclerView recview;
+    MyRecipesAdapter adapter;
+    ArrayList<Recipe> list;
     private ProgressDialog progressDialog;
     public ProfileFragment() {
         // Required empty public constructor
@@ -58,6 +72,20 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
+
+        TextView tv=view.findViewById(R.id.yourrecipestext);
+        Typeface customfont = Typeface.createFromAsset(getContext().getAssets(), "fonts/Lobster-Regular.ttf");
+        tv.setTypeface(customfont);
+        recview=view.findViewById(R.id.profileRecView);
+        recview.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes").orderByChild("publishedBy").equalTo(FirebaseAuth.getInstance().getUid());
+        FirebaseRecyclerOptions<Recipe> options=
+                new FirebaseRecyclerOptions.Builder<Recipe>()
+                        .setQuery(query,Recipe.class)
+                        .build();
+
+        adapter = new MyRecipesAdapter(options);
+        recview.setAdapter(adapter);
 
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -196,6 +224,7 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+
     private ActivityResultLauncher<Intent> mGetImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -224,4 +253,17 @@ public class ProfileFragment extends Fragment {
                 }
 
             });
+
+
+    @Override
+    public  void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+     public  void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
 }

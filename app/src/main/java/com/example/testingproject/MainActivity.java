@@ -201,12 +201,7 @@ public class MainActivity extends AppCompatActivity implements AdminAdapter.OnNo
                 finish();
                 break;
 
-            case R.id.MyProfile:
 
-                startActivity(new Intent(MainActivity.this,MyProfileActivity.class));
-
-
-                break;
         }
         return true;
     }

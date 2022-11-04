@@ -163,23 +163,22 @@
             android:textColor="#444"
             android:textSize="18sp" />
 
+
         <TextView
             android:id="@+id/txtcnt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="106dp"
+            android:layout_height="52dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="-77dp"
-            android:layout_marginTop="390dp"
-            android:layout_marginEnd="177dp"
-            android:layout_marginBottom="314dp"
-            android:layout_toStartOf="@+id/btnSave"
-            android:layout_toEndOf="@+id/btnEdit"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="383dp"
+            android:layout_marginEnd="288dp"
             android:text=""
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold" />
-        />
+
         <LinearLayout
             android:id="@+id/LL"
             android:layout_width="match_parent"
@@ -187,23 +186,33 @@
             android:orientation="horizontal"
             android:layout_below="@id/btnEdit">
 
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:textOn="Hide"
-                android:textOff="Show My Recipes"/>
-
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/profileRecView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/LL"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="68dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/yourrecipestext"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profileLinearLayout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="122dp"
+            android:layout_marginEnd="56dp"
+            android:text="My Recipes"
+            android:textColor="#b11226"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
 
