@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -73,7 +74,7 @@ public class adminPage extends AppCompatActivity implements AdminAdapter.OnNoteL
     public void onNoteClick(int position) {
 
         Intent intent=new Intent(adminPage.this,Accept_Reject_Page.class);
-        intent.putExtra("Package",list.get(position));
+        intent.putExtra("Package", (Parcelable) list.get(position));
         startActivity(intent);
 
     }

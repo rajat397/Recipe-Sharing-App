@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
                         .setQuery(query, Recipe.class)
                         .build();
 
-        adapter = new HomeAdapter(options);
+        adapter = new HomeAdapter(getActivity(),options);
         recview.setAdapter(adapter);
 
 

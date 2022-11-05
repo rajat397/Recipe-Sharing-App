@@ -37,7 +37,7 @@ import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AdminAdapter.OnNoteListener{
+public class MainActivity extends AppCompatActivity {
 
 
 
@@ -159,14 +159,7 @@ public class MainActivity extends AppCompatActivity implements AdminAdapter.OnNo
 
 
 
-    @Override
-    public void onNoteClick(int position) {
 
-        Intent intent=new Intent(MainActivity.this,RecipeDisplayActivity.class);
-        intent.putExtra("Package",recipeList.get(position));
-        startActivity(intent);
-
-    }
 
 
     private void replaceFragment(Fragment fragment)

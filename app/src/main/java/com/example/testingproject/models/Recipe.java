@@ -4,10 +4,11 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Recipe implements Parcelable {
+public class Recipe implements Parcelable , Serializable {
 
 
 

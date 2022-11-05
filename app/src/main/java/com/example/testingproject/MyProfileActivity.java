@@ -259,13 +259,7 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
-    public void onNoteClick(int position) {
 
-        Intent intent=new Intent(MyProfileActivity.this,Accept_Reject_Page.class);
-        intent.putExtra("Package",list.get(position));
-        startActivity(intent);
-
-    }
     private ActivityResultLauncher<Intent> mGetImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
