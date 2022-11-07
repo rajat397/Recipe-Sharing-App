@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Accept_Reject_Page extends AppCompatActivity {
 
@@ -42,15 +40,15 @@ public class Accept_Reject_Page extends AppCompatActivity {
         Intent intent=getIntent();
         Recipe recipe=intent.getParcelableExtra("Package");
 
-        title=findViewById(R.id.Title_text);
-        ingredients=findViewById(R.id.Ingredients_text);
-        steps=findViewById(R.id.steps_text);
+        title=findViewById(R.id.Title_text1);
+        ingredients=findViewById(R.id.Ingredients_text1);
+        steps=findViewById(R.id.steps_text1);
         author=findViewById(R.id.author);
-        backButton=findViewById(R.id.backButton);
-        nextButton=findViewById(R.id.nextButton);
+        backButton=findViewById(R.id.backButton1);
+        nextButton=findViewById(R.id.nextButton1);
         accept=findViewById(R.id.accept_button);
         reject=findViewById(R.id.reject_button);
-        imageView=findViewById(R.id.accept_reject_page_image);
+        imageView=findViewById(R.id.recipe_images);
         db= FirebaseDatabase.getInstance().getReference().child("Users").child(recipe.getPublishedBy()).child("userName");
         modify=FirebaseDatabase.getInstance().getReference().child("Recipes");
 

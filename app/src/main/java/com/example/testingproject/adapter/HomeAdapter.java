@@ -79,7 +79,7 @@ public class HomeAdapter extends FirebaseRecyclerAdapter<Recipe,HomeAdapter.view
        return  new viewHolder(view);
     }
 
-
+            
 
     public class viewHolder extends RecyclerView.ViewHolder{
 

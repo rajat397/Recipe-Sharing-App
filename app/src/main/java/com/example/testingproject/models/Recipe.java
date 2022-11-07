@@ -126,8 +126,15 @@ public class Recipe implements Parcelable , Serializable {
     private String description;
     private Date postedAt;
     ArrayList<String>recipeImages;
+    ArrayList<String> liked_list;
 
+    public ArrayList<String> getLiked_list() {
+        return liked_list;
+    }
 
+    public void setLiked_list(ArrayList<String> liked_list) {
+        this.liked_list = liked_list;
+    }
 
     private boolean validate;
 

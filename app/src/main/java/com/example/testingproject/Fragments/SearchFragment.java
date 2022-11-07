@@ -1,5 +1,6 @@
 package com.example.testingproject.Fragments;
-
+import com.example.testingproject.adapter.MyAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.testingproject.R;
 import com.example.testingproject.adapter.MyAdapter;
+import com.example.testingproject.displayRecipe;
 import com.example.testingproject.models.Recipe;
 import com.example.testingproject.search_activity;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +39,7 @@ public class SearchFragment extends Fragment {
     private MyAdapter myAdapter;
     ArrayList<Recipe> list;
     private SearchView searchView;
-
+    ArrayList<Recipe> temp=new ArrayList<>();
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -77,8 +80,9 @@ public class SearchFragment extends Fragment {
                         {
                             list.add(ds.getValue(Recipe.class));
                         }
-                        MyAdapter adapterClass=new MyAdapter(list);
-                        mResultList.setAdapter(adapterClass);
+                        temp.clear();temp.addAll(list);
+                        myAdapter=new MyAdapter(temp);
+                        mResultList.setAdapter(myAdapter);
                     }
                 }
 
@@ -115,8 +119,14 @@ public class SearchFragment extends Fragment {
                 myList.add(object);
             }
         }
-        MyAdapter adapterClass=new MyAdapter(myList);
-        mResultList.setAdapter(adapterClass);
+        temp.clear();temp.addAll(myList);
+
+        //mResultList.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
     }
+
+
+
+
 }
 
