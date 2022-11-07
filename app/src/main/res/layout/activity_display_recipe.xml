@@ -9,85 +9,46 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/user_avatar"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp"
-            android:background="@color/grey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+        android:layout_height="match_parent"
+        >
 
         <ImageView
-            android:id="@+id/accept_reject_page_image"
+            android:id="@+id/recipe_images"
             android:layout_width="253dp"
             android:layout_height="231dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/nextButton"
-            app:layout_constraintHorizontal_bias="0.489"
-            app:layout_constraintStart_toEndOf="@+id/backButton"
-            app:layout_constraintTop_toBottomOf="@+id/view"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/nextButton1"
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toEndOf="@+id/backButton1"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/etUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:text="UserName"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toTopOf="@+id/profile_image"
-            app:layout_constraintVertical_bias="0.476" />
-
         <ImageButton
-            android:id="@+id/backButton"
+            android:id="@+id/backButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="@+id/accept_reject_page_image"
+            app:layout_constraintBottom_toBottomOf="@+id/recipe_images"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/accept_reject_page_image"
+            app:layout_constraintTop_toTopOf="@+id/recipe_images"
             app:layout_constraintVertical_bias="0.497"
             app:srcCompat="@drawable/back_arrow" />
 
         <ImageButton
-            android:id="@+id/nextButton"
+            android:id="@+id/nextButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="@+id/accept_reject_page_image"
+            app:layout_constraintBottom_toBottomOf="@+id/recipe_images"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/accept_reject_page_image"
+            app:layout_constraintTop_toTopOf="@+id/recipe_images"
             app:layout_constraintVertical_bias="0.497"
             app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
         <TextView
-            android:id="@+id/Title_text"
+            android:id="@+id/Title_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -95,7 +56,7 @@
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accept_reject_page_image" />
+            app:layout_constraintTop_toBottomOf="@+id/recipe_images" />
 
         <TextView
             android:id="@+id/textView6"
@@ -107,10 +68,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.025"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Title_text" />
+            app:layout_constraintTop_toBottomOf="@+id/Title_text1" />
 
         <TextView
-            android:id="@+id/Ingredients_text"
+            android:id="@+id/Ingredients_text1"
             android:layout_width="385dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -133,10 +94,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.045"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ingredients_text" />
+            app:layout_constraintTop_toBottomOf="@+id/Ingredients_text1" />
 
         <TextView
-            android:id="@+id/steps_text"
+            android:id="@+id/steps_text1"
             android:layout_width="392dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -154,26 +115,38 @@
             android:id="@+id/like"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginStart="168dp"
             android:src="@drawable/empty_heart"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.393"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/steps_text"
-            app:layout_constraintVertical_bias="0.469" />
+            app:layout_constraintTop_toBottomOf="@+id/steps_text1"
+            app:layout_constraintVertical_bias="0.75"
+            app:srcCompat="@drawable/empty_heart" />
+
+        <TextView
+            android:id="@+id/postedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Posted by - "
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/like"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.713"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/steps_text1"
+            app:layout_constraintVertical_bias="0.52" />
 
         <TextView
             android:id="@+id/likeCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Count"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/like"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.131"
+            app:layout_constraintHorizontal_bias="0.068"
             app:layout_constraintStart_toEndOf="@+id/like"
-            app:layout_constraintTop_toTopOf="@+id/like"
-            app:layout_constraintVertical_bias="0.388" />
+            app:layout_constraintTop_toTopOf="@+id/like" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.UploadRecipeFragment"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:background="@drawable/food_bg"
+    tools:context=".Fragments.UploadRecipeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -49,7 +49,7 @@
             android:layout_margin="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:background="@null"
+            android:background="@drawable/btn_bg"
             android:gravity="center"
             android:hint="Name of the Dish"
             android:textSize="30dp"
@@ -66,14 +66,14 @@
             android:layout_margin="10dp"
             android:layout_marginStart="10dp"
 
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="10dp"
-            android:background="@null"
+            android:background="@drawable/btn_bg"
             android:gravity="left"
             android:hint="Enter the ingredients required \nfor making the dish"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image" />
 
@@ -83,8 +83,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="10dp"
-            android:background="@null"
+            android:background="@drawable/btn_bg"
             android:gravity="left"
             android:hint="Enter the steps for making the recipe"
             android:inputType="textMultiLine"
@@ -131,7 +132,7 @@
             android:background="@drawable/ic_baseline_image_24"
             app:layout_constraintBottom_toTopOf="@+id/etIngredients"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.524"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dishTitle"
             app:layout_constraintVertical_bias="0.0">

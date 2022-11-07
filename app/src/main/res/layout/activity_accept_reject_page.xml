@@ -12,42 +12,42 @@
         tools:context=".Accept_Reject_Page">
 
         <ImageView
-            android:id="@+id/accept_reject_page_image"
+            android:id="@+id/recipe_images"
             android:layout_width="253dp"
             android:layout_height="231dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/nextButton"
+            app:layout_constraintEnd_toStartOf="@+id/nextButton1"
             app:layout_constraintHorizontal_bias="0.55"
-            app:layout_constraintStart_toEndOf="@+id/backButton"
+            app:layout_constraintStart_toEndOf="@+id/backButton1"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/ic_baseline_image_24" />
 
         <ImageButton
-            android:id="@+id/backButton"
+            android:id="@+id/backButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="@+id/accept_reject_page_image"
+            app:layout_constraintBottom_toBottomOf="@+id/recipe_images"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/accept_reject_page_image"
+            app:layout_constraintTop_toTopOf="@+id/recipe_images"
             app:layout_constraintVertical_bias="0.497"
             app:srcCompat="@drawable/back_arrow" />
 
         <ImageButton
-            android:id="@+id/nextButton"
+            android:id="@+id/nextButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="@+id/accept_reject_page_image"
+            app:layout_constraintBottom_toBottomOf="@+id/recipe_images"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/accept_reject_page_image"
+            app:layout_constraintTop_toTopOf="@+id/recipe_images"
             app:layout_constraintVertical_bias="0.497"
             app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
         <TextView
-            android:id="@+id/Title_text"
+            android:id="@+id/Title_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -55,7 +55,7 @@
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accept_reject_page_image" />
+            app:layout_constraintTop_toBottomOf="@+id/recipe_images" />
 
         <TextView
             android:id="@+id/textView6"
@@ -67,10 +67,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.025"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Title_text" />
+            app:layout_constraintTop_toBottomOf="@+id/Title_text1" />
 
         <TextView
-            android:id="@+id/Ingredients_text"
+            android:id="@+id/Ingredients_text1"
             android:layout_width="385dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -93,10 +93,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.045"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ingredients_text" />
+            app:layout_constraintTop_toBottomOf="@+id/Ingredients_text1" />
 
         <TextView
-            android:id="@+id/steps_text"
+            android:id="@+id/steps_text1"
             android:layout_width="392dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -114,12 +114,12 @@
             android:layout_width="149dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="-Kaushik"
+            android:text="-User"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.938"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/steps_text" />
+            app:layout_constraintTop_toBottomOf="@+id/steps_text1" />
 
         <Button
             android:id="@+id/accept_button"
