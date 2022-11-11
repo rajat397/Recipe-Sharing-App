@@ -54,7 +54,7 @@
             android:layout_marginStart="14dp"
             android:text="UserName"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="26sp"
             android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="@+id/profile_image"

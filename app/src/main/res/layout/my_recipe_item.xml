@@ -35,7 +35,7 @@
             android:layout_marginStart="14dp"
             android:text="UserName"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
 
             app:layout_constraintBottom_toBottomOf="@+id/profile_image"
@@ -60,6 +60,7 @@
             android:id="@+id/food_title"
             android:layout_width="153dp"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:layout_marginStart="4dp"
             android:text="Food_Title"
             android:textColor="@color/black"

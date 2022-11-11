@@ -4,6 +4,7 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -22,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +35,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testingproject.MainActivity;
-import com.example.testingproject.MyProfileActivity;
 import com.example.testingproject.R;
 import com.example.testingproject.adapter.MyRecipesAdapter;
 import com.example.testingproject.models.Recipe;
@@ -67,24 +69,55 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
+
+    public class WrapContentLinearLayoutManager extends LinearLayoutManager {
+        public WrapContentLinearLayoutManager(Context context) {
+            super(context);
+        }
+
+        public WrapContentLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+            super(context, orientation, reverseLayout);
+        }
+
+        public WrapContentLinearLayoutManager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+            super(context, attrs, defStyleAttr, defStyleRes);
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            try {
+                super.onLayoutChildren(recycler, state);
+            } catch (IndexOutOfBoundsException e) {
+                Log.e("TAG", "meet a IOOBE in RecyclerView");
+            }
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
 
+//        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        recview=view.findViewById(R.id.profileRecView);
+        recview.setLayoutManager(new ProfileFragment.WrapContentLinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+
+
+
         TextView tv=view.findViewById(R.id.yourrecipestext);
         Typeface customfont = Typeface.createFromAsset(getContext().getAssets(), "fonts/Lobster-Regular.ttf");
         tv.setTypeface(customfont);
-        recview=view.findViewById(R.id.profileRecView);
-        recview.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+
         Query query = FirebaseDatabase.getInstance().getReference().child("Recipes").orderByChild("publishedBy").equalTo(FirebaseAuth.getInstance().getUid());
         FirebaseRecyclerOptions<Recipe> options=
                 new FirebaseRecyclerOptions.Builder<Recipe>()
                         .setQuery(query,Recipe.class)
                         .build();
 
-        adapter = new MyRecipesAdapter(options);
+        adapter = new MyRecipesAdapter(getActivity(),options);
         recview.setAdapter(adapter);
 
         database = FirebaseDatabase.getInstance();

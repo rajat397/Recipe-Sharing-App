@@ -22,7 +22,6 @@ import com.example.testingproject.UploadRecipeActivity;
 import com.example.testingproject.adapter.HomeAdapter;
 import com.example.testingproject.adminPage;
 import com.example.testingproject.models.Recipe;
-import com.example.testingproject.search_activity;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;

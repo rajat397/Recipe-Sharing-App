@@ -21,7 +21,6 @@ import com.example.testingproject.R;
 import com.example.testingproject.adapter.MyAdapter;
 import com.example.testingproject.displayRecipe;
 import com.example.testingproject.models.Recipe;
-import com.example.testingproject.search_activity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -81,7 +80,7 @@ public class SearchFragment extends Fragment {
                             list.add(ds.getValue(Recipe.class));
                         }
                         temp.clear();temp.addAll(list);
-                        myAdapter=new MyAdapter(temp);
+                        myAdapter=new MyAdapter(temp,getActivity());
                         mResultList.setAdapter(myAdapter);
                     }
                 }

@@ -1,5 +1,8 @@
 package com.example.testingproject.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testingproject.R;
+import com.example.testingproject.RecipeDisplayActivity;
 import com.example.testingproject.models.Recipe;
 import com.example.testingproject.models.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -25,10 +29,26 @@ import io.reactivex.rxjava3.annotations.NonNull;
 
 public class MyRecipesAdapter extends FirebaseRecyclerAdapter<Recipe, MyRecipesAdapter.viewHolder> {
     ArrayList<Recipe> list;
-    public MyRecipesAdapter(@NonNull FirebaseRecyclerOptions<Recipe> options){super(options);}
+    Context context;
+
+    public  MyRecipesAdapter(Context context,@androidx.annotation.NonNull FirebaseRecyclerOptions<Recipe> options) {
+        super(options);
+        this.context=context;
+    }
+
 
     @Override
     protected void onBindViewHolder(@NonNull viewHolder holder, int position, @NonNull Recipe model) {
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, RecipeDisplayActivity.class);
+                intent.putExtra("Model", (Parcelable) model);
+                context.startActivity(intent);
+
+            }
+        });
         FirebaseDatabase.getInstance().getReference().child("Users").child(model.getPublishedBy()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,7 +83,7 @@ public class MyRecipesAdapter extends FirebaseRecyclerAdapter<Recipe, MyRecipesA
 
         ImageView profile,foodImage;
         TextView userName,FoodTitle;
-
+        View view ;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -71,6 +91,7 @@ public class MyRecipesAdapter extends FirebaseRecyclerAdapter<Recipe, MyRecipesA
             foodImage = itemView.findViewById(R.id.admin_food_image);
             userName = itemView.findViewById(R.id.etUserName);
             FoodTitle = itemView.findViewById(R.id.food_title);
+            view = itemView;
         }
     }
 

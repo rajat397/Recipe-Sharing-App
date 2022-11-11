@@ -74,7 +74,6 @@ public class HomeAdapter extends FirebaseRecyclerAdapter<Recipe,HomeAdapter.view
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_recipe_item,parent,false);
        return  new viewHolder(view);
     }
