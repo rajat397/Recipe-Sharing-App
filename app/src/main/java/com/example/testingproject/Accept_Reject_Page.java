@@ -110,7 +110,11 @@ public class Accept_Reject_Page extends AppCompatActivity {
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).removeValue();
+
+                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("postLike").getRef().removeValue();
+                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("like_list").getRef().removeValue();
+                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).getRef().removeValue();
+
                 Toast.makeText(Accept_Reject_Page.this, "Recipe Rejected !!", Toast.LENGTH_SHORT).show();
                 finish();
             }
