@@ -130,7 +130,7 @@ public class RecipeDisplayActivity extends AppCompatActivity  {
                 Log.d("check kar", "onClick: "+model.getRecipeId());
 
                 FirebaseDatabase.getInstance().getReference().child("Recipes").child(model.getRecipeId()).child("like_list").child(FirebaseAuth.getInstance().getUid()).setValue(true);
-                Log.d("qwerty", "onClick: "+model.getPostLike());
+               // Log.d("qwerty", "onClick: "+model.getPostLike());
 //                FirebaseDatabase.getInstance().getReference().child("Recipes").child(model.getRecipeId()).child("postLike").setValue(
 //                        FirebaseDatabase.getInstance().getReference().child("Recipes").child(model.getRecipeId()).child("postLike").addValueEventListener(new ValueEventListener() {
 //                            @Override
@@ -167,7 +167,7 @@ public class RecipeDisplayActivity extends AppCompatActivity  {
                     ans++;
                 Log.d("Likes hai", "Like Count: "+ans);
                 likeCount.setText(Integer.toString(ans));
-                FirebaseDatabase.getInstance().getReference().child("Recipes").child(model.getRecipeId()).child("postLike").setValue(ans);
+                //FirebaseDatabase.getInstance().getReference().child("Recipes").child(model.getRecipeId()).child("postLike").setValue(ans);
             }
 
             @Override

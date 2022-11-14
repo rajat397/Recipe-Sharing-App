@@ -12,15 +12,15 @@ public class Recipe implements Parcelable , Serializable {
 
 
 
-    private int postLike;
+  //  private int postLike;
 
-    public int getPostLike() {
-        return postLike;
-    }
+   // public int getPostLike() {
+   //     return postLike;
+   // }
 
-    public void setPostLike(int postLike) {
-        this.postLike = postLike;
-    }
+  //  public void setPostLike(int postLike) {
+   //     this.postLike = postLike;
+   // }
 
     public Recipe(){}
     public Recipe(String recipeId, String publishedBy, String dishTitle, String ingredients, String description, Date postedAt, ArrayList<String> recipeImages,boolean validate) {
@@ -126,15 +126,15 @@ public class Recipe implements Parcelable , Serializable {
     private String description;
     private Date postedAt;
     ArrayList<String>recipeImages;
-    ArrayList<String> liked_list;
+  //  ArrayList<String> liked_list;
 
-    public ArrayList<String> getLiked_list() {
-        return liked_list;
-    }
+  //  public ArrayList<String> getLiked_list() {
+   //     return liked_list;
+  //  }
 
-    public void setLiked_list(ArrayList<String> liked_list) {
-        this.liked_list = liked_list;
-    }
+   // public void setLiked_list(ArrayList<String> liked_list) {
+   //     this.liked_list = liked_list;
+   // }
 
     private boolean validate;
 

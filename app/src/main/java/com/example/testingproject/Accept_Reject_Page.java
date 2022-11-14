@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -111,9 +112,14 @@ public class Accept_Reject_Page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("postLike").getRef().removeValue();
-                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("like_list").getRef().removeValue();
-                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).getRef().removeValue();
+                //FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("recipeId").getRef().removeValue();
+                Log.d("Testing123", "onClick: "+FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("postLike").toString());
+                Log.d("Testing123", "onClick: "+FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("like_list").toString());
+              //  FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("postLike").removeValue();
+             //   FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("like_list").removeValue();
+                FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).removeValue();
+
+
 
                 Toast.makeText(Accept_Reject_Page.this, "Recipe Rejected !!", Toast.LENGTH_SHORT).show();
                 finish();
