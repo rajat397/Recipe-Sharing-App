@@ -206,10 +206,15 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.logout:
 
-                FirebaseAuth.getInstance()
-                .signOut();
+                FirebaseAuth.getInstance().signOut();
+
                 startActivity(new Intent(MainActivity.this,user_login.class));
+
                 finish();
+                //System.exit(0);
+
+                //Log.d("hotahai", "onOptionsItemSelected: sdsdfdsfsdf");
+               // System.exit(0);
                 break;
 
 
