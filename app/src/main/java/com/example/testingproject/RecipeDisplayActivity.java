@@ -107,7 +107,7 @@ public class RecipeDisplayActivity extends AppCompatActivity  {
                 else
                 {
                     position++;
-                    Picasso.get().load(imageList.get(position)).placeholder(R.drawable.user_avatar).resize(150, 150).into(recipeImage);
+                    Picasso.get().load(imageList.get(position)).transform(new RoundedTransformation(50, 4)).placeholder(R.drawable.user_avatar).resize(150, 150).into(recipeImage);
                 }
             }
         });
