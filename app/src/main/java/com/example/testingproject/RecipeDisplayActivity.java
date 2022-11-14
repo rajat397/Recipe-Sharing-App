@@ -81,7 +81,7 @@ public class RecipeDisplayActivity extends AppCompatActivity  {
                 for(DataSnapshot d3:snapshot.getChildren())
                 {
                     if(d3.getKey().toString().equals(FirebaseAuth.getInstance().getUid())){
-                        like.setImageResource(R.drawable.red_heart);
+                        like.setImageResource(R.drawable.heart);
                     }
                 }
             }
@@ -125,7 +125,7 @@ public class RecipeDisplayActivity extends AppCompatActivity  {
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                like.setImageResource(R.drawable.red_heart);
+                like.setImageResource(R.drawable.heart);
                 Toast.makeText(RecipeDisplayActivity.this, "You Liked this recipe !!", Toast.LENGTH_SHORT).show();
                 Log.d("check kar", "onClick: "+model.getRecipeId());
 

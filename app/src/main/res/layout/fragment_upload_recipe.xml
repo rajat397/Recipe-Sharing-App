@@ -16,16 +16,6 @@
         android:layout_height="match_parent">
 
 
-        <ImageView
-            android:id="@+id/cross"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/cross"
-            app:layout_constraintBottom_toBottomOf="@+id/btnPublish"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toTopOf="@+id/btnPublish" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPublish"

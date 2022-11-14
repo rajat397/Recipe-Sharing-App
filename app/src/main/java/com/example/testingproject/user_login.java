@@ -63,17 +63,18 @@ public class user_login extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     User user = snapshot.getValue(User.class);
                     String userType = user.getUserType();
-                    if(userType.equals("GENERAL"))
+                    if(userType.equalsIgnoreCase("ADMIN"))
                     {
                         progressDialog.hide();
-                        startActivity(new Intent(user_login.this, MainActivity.class));
+                        startActivity(new Intent(user_login.this, adminPage.class));
                         finish();
+
 
 
                     }
                     else{
                         progressDialog.hide();
-                        startActivity(new Intent(user_login.this, adminPage.class));
+                        startActivity(new Intent(user_login.this, MainActivity.class));
                         finish();
 
                     }
@@ -117,7 +118,7 @@ public class user_login extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     User user = snapshot.getValue(User.class);
                                     String userType = user.getUserType();
-                                    if(userType.equals("GENERAL"))
+                                    if(userType.equalsIgnoreCase("GENERAL"))
                                     {
                                         progressDialog.hide();
                                         startActivity(new Intent(user_login.this, MainActivity.class));
