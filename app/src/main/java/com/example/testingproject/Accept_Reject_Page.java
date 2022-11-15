@@ -120,7 +120,21 @@ public class Accept_Reject_Page extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).removeValue();
 
 
-
+//                FirebaseDatabase.getInstance().getReference().child("Recipes").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if(snapshot.hasChild(recipe.getRecipeId()))
+//                        {
+//                            FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("postLike").getRef().removeValue();
+//                            FirebaseDatabase.getInstance().getReference().child("Recipes").child(recipe.getRecipeId()).child("recipeId").getKey().removeValue();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
                 Toast.makeText(Accept_Reject_Page.this, "Recipe Rejected !!", Toast.LENGTH_SHORT).show();
                 finish();
             }

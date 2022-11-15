@@ -2,7 +2,6 @@ package com.example.testingproject.Fragments;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -29,9 +28,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
-import com.example.testingproject.MainActivity;
 import com.example.testingproject.R;
-import com.example.testingproject.UploadRecipeActivity;
 import com.example.testingproject.models.Recipe;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

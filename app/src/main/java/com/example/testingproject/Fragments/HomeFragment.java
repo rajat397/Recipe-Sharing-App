@@ -1,11 +1,8 @@
 package com.example.testingproject.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,13 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.example.testingproject.MainActivity;
 import com.example.testingproject.R;
-import com.example.testingproject.UploadRecipeActivity;
 import com.example.testingproject.adapter.HomeAdapter;
-import com.example.testingproject.adminPage;
 import com.example.testingproject.models.Recipe;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
